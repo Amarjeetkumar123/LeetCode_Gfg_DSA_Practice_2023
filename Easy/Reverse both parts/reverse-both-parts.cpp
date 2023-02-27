@@ -68,44 +68,44 @@ class Solution
 {
 public:
         
-   Node* reverse(Node* head)
-   {
-       Node* curr=head;
-       Node* prev=NULL;
-       Node* nxt;
-       
-       while(curr!=NULL)
-       {
-           nxt=curr->next;
-           curr->next=prev;
-           prev=curr;
-           curr=nxt;
-       }
-       
-       return prev;
-   }
-    Node *reverse(Node *head, int k)
-    {
-        // code here
-        Node* temp=head;
-        for(int i=0;i<k-1; i++)
-        {
+   Node *reverse(Node *head, int k){
+
+        //Code for reversing the list and counting the number of nodes into a variable count
+
+        Node* curr=head;
+        Node* prev=NULL;
+        int count=0;
+
+        while(curr!=NULL){
+
+            Node* next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+            count++;
+
+        }
+
+        //Important thing to note that now the starting of the list has prev as the main pointer ans not the head
+
+        Node* temp=prev;
+        int i=count-k-1;
+
+        while(i--){
             temp=temp->next;
         }
-        
-        Node* secondHead=reverse(temp->next);
+
+        head->next=prev;
+
+        //Now connect the last of the list to the front
+
+        Node* ans=temp->next;
         temp->next=NULL;
-        Node* firstHead=reverse(head);
-        
-        temp=firstHead;
-        
-        while(temp->next!=NULL)
-        {
-            temp=temp->next;
-        }
-        temp->next=secondHead;
-        
-        return firstHead;
+
+        //Breaking at the node-k point 
+
+        return ans;
+
     }
 };
 
