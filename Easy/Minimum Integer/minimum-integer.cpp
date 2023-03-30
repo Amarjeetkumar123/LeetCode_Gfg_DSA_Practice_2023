@@ -35,15 +35,11 @@ class Solution {
         long total_sum =0;
         for(auto x : A)
             total_sum += x;
-            
-        // cout<<total_sum;
-        sort(A.begin(),A.end());
         
-         int ans;
+         long ans = INT_MAX;
            for(auto i : A){
                if(total_sum <= (long)((long)N*(long)i)){
-                   ans = i;
-                   break;
+                   ans = min(ans,(long)i);
                }
            }
            return ans;
